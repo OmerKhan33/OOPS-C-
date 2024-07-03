@@ -1,4 +1,4 @@
-// The following explains the concept of static data members.
+// The following code explains the concept of static data members.
 //
 #include <iostream>
 #include <string>
