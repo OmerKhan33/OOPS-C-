@@ -1,5 +1,5 @@
 //The following code two parent classes from which a chld class inherit certain attributes
-
+//The following code is an example of Multiple Inheritance.
 #include <iostream> 
 using namespace std; 
  
