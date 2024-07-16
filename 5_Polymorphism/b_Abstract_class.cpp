@@ -20,7 +20,7 @@ class Derived:public Base
  
 int main() 
 { 
-    Base obj;   //Compile Time Error 
+    //Base obj;   //Compile Time Error if you uncomment this line of code
     Base *b; 
     Derived d; 
     b = &d; 
