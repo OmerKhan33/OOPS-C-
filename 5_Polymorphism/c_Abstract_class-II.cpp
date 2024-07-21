@@ -9,12 +9,12 @@ class Shape
    public: 
       Shape( int a = 0, int b = 0)
       { 
-         width = a; 
-         height = b; 
+        width = a; 
+        height = b; 
       } 
  
        //pure virtual function 
-virtual int area() =0;  
+    virtual int area() =0;  
 }; 
 
 class Rectangle: public Shape 
@@ -23,8 +23,8 @@ class Rectangle: public Shape
         Rectangle( int a = 0, int b = 0):Shape(a, b) {} 
         int area () 
         {  
-        cout << "Rectangle class area :" <<endl; 
-        return (width * height);  
+            cout << "Rectangle class area :" <<endl; 
+            return (width * height);  
         } 
 }; 
 class Triangle: public Shape 
@@ -33,8 +33,8 @@ public:
     Triangle( int a = 0, int b = 0):Shape(a, b) {} 
     int area () 
     {  
-    cout << "Triangle class area :" <<endl; 
-    return (width * height / 2);  
+        cout << "Triangle class area :" <<endl; 
+        return (width * height / 2);  
     } 
 }; 
 // Main function for the program 
