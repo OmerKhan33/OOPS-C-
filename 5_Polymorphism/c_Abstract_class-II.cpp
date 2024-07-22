@@ -1,4 +1,5 @@
 #include <iostream>  
+#include <string>
 using namespace std; 
   
 class Shape 
@@ -53,8 +54,10 @@ int main()
     shape->area(); 
     return 0; 
 } 
-// When we create a pure virtual function in Abstract class, we reserve a slot for a function in the 
-// VTABLE(studied in last topic), but doesn't put any address in that slot. Hence the VTABLE will 
-// be incomplete. 
-// As the VTABLE for Abstract class is incomplete, hence the compiler will not let the creation of 
-// object for such class and will display an error message whenever you try to do so
+/*
+When we create a pure virtual function in Abstract class, we reserve a slot for a function in the 
+VTABLE(studied in last topic), but doesn't put any address in that slot. Hence the VTABLE will 
+be incomplete. 
+As the VTABLE for Abstract class is incomplete, hence the compiler will not let the creation of 
+object for such class and will display an error message whenever you try to do so
+*/
