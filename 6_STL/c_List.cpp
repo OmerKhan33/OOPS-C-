@@ -1,3 +1,9 @@
+/*List is a sequence container which takes constant time in inserting and removing elements. List 
+in STL is implemented as Doubly Link List. The elements from List cannot be directly accessed. 
+For example, to access element of a particular position, you have to iterate from a known 
+position to that particular position.*/
+
+
 #include <iostream> 
 #include <list> 
 using namespace std; 
@@ -31,11 +37,8 @@ int main()
  
     cout<<"All elements of List LI are after reversing: " <<endl; 
     for(it = LI.begin();it!=LI.end();it++) 
-CS112L: Object Oriented Programming Lab 
-116 
- 
     { 
-         cout<<*it<<" "; 
+        cout<<*it<<" "; 
     } 
     cout<<endl; 
  
@@ -45,7 +48,7 @@ CS112L: Object Oriented Programming Lab
     cout<<"Elements after removing all occurence of 5 from List"<<endl; 
     for(it = LI.begin();it!=LI.end();it++) 
     { 
-         cout<<*it<<" "; 
+        cout<<*it<<" "; 
     } 
     cout<<endl; 
  
