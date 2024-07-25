@@ -1,3 +1,7 @@
+/*Stack is a container which follows the LIFO (Last In First Out) order and the elements are 
+inserted and deleted from one end of the container. The element which is inserted last will be 
+extracted first*/
+
 #include <iostream> 
 #include <stack> 
  
@@ -39,3 +43,4 @@ int main( )
  
     return 0; 
  
+}
