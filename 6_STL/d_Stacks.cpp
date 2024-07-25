@@ -15,10 +15,10 @@ int main( )
     //Now the stack is {0, 1, 2, 3, 4} 
  
     //size of stack s 
-    cout<<”Size of stack is: ” <<s.size( )<<endl; 
+    cout<<"Size of stack is: " <<s.size( )<<endl; 
  
     //accessing top element from stack, it will be the last inserted element. 
-    cout<<”Top element of stack is: ” <<s.top( ) <<endl ; 
+    cout<<"Top element of stack is: "<<s.top( ) <<endl ; 
  
     //Now deleting all elements from stack  
     for(int i = 0;i < 5;i++) 
@@ -30,13 +30,12 @@ int main( )
  
     if(s.empty()) 
     { 
-        cout <<”Stack is empty.”<<endl; 
+        cout <<"Stack is empty."<<endl; 
     } 
     else 
     { 
-        cout <<”Stack is Not empty.”<<endl; 
+        cout <<"Stack is Not empty."<<endl; 
     } 
  
     return 0; 
  
-}
