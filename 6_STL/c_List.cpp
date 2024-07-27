@@ -27,6 +27,7 @@ int main()
     LI.insert(it,1); 
  
     cout<<"All elements of List LI are: " <<endl; 
+    
     for(it = LI.begin();it!=LI.end();it++) 
     { 
         cout<<*it<<" "; 
