@@ -6,7 +6,8 @@ extracted first*/
 #include <stack> 
  
 using namespace std; 
-int main( ) 
+
+int main() 
 { 
     stack <int> s;  // declaration of stack 
  
