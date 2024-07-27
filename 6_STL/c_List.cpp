@@ -3,10 +3,11 @@ in STL is implemented as Doubly Link List. The elements from List cannot be dire
 For example, to access element of a particular position, you have to iterate from a known 
 position to that particular position.*/
 
-
 #include <iostream> 
 #include <list> 
 using namespace std; 
+
+
 int main() 
 { 
     list <int> LI; 
