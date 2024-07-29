@@ -55,7 +55,8 @@ int main()
     cout<<endl; 
  
     //removes last element from list 
-    LI.pop_back(); 
+    LI.pop_back();
+     
     //removes first element from list 
     LI.pop_front(); 
     return 0; 
