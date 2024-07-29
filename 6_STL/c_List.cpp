@@ -1,4 +1,4 @@
-/*List is a sequence container which takes constant time in inserting and removing elements. List 
+/* List is a sequence container which takes constant time in inserting and removing elements. List 
 in STL is implemented as Doubly Link List. The elements from List cannot be directly accessed. 
 For example, to access element of a particular position, you have to iterate from a known 
 position to that particular position.*/
