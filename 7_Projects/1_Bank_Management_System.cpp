@@ -1,37 +1,31 @@
-// bank management system
-
 #include <iostream>
 #include <string>
 using namespace std;
 
-// Class to represent a bank account
+// Base class for BankAccount
 class BankAccount 
 {
-    private:
+    protected:
         string accountNumber;
         double balance;
 
     public:
         // Constructor
-        BankAccount(const string& accNum, double initialBalance) 
-        {
-            accountNumber = accNum;
-            balance = initialBalance;
-        }
+        BankAccount(const string& accNum, double initialBalance)
+            : accountNumber(accNum), balance(initialBalance) {}
 
-        // Member function to deposit funds
-        void deposit(double amount) 
+        // Virtual functions for deposit and withdraw
+        virtual void deposit(double amount) 
         {
             balance += amount;
         }
 
-        // Member function to withdraw funds
-        void withdraw(double amount) 
+        virtual void withdraw(double amount) 
         {
             if (balance >= amount) 
             {
                 balance -= amount;
-            }
+            } 
             else 
             {
                 cout << "Insufficient balance. Cannot withdraw." << endl;
@@ -44,6 +38,13 @@ class BankAccount
             return balance;
         }
 
+        // Virtual function to display account details
+        virtual void display() const 
+        {
+            cout << "Account Number: " << accountNumber << endl;
+            cout << "Balance: $" << balance << endl;
+        }
+
         // Overloaded + operator to add balances of two accounts
         BankAccount operator+(const BankAccount& other) 
         {
@@ -53,31 +54,78 @@ class BankAccount
 
         // Friend function to display account details
         friend void displayAccountDetails(const BankAccount& acc);
+    };
+
+    // Derived class for SavingsAccount
+    class SavingsAccount : public BankAccount 
+    {
+    public:
+        SavingsAccount(const string& accNum, double initialBalance)
+            : BankAccount(accNum, initialBalance) {}
+
+        void deposit(double amount) override 
+        {
+            // Apply interest rate for savings account
+            balance += amount * 1.02; // Example: 2% interest
+        }
+
+        void display() const override 
+        {
+            cout << "Savings Account - ";
+            BankAccount::display();
+        }
+};
+
+// Derived class for CheckingAccount
+class CheckingAccount : public BankAccount 
+{
+public:
+    CheckingAccount(const string& accNum, double initialBalance)
+        : BankAccount(accNum, initialBalance) {}
+
+    void withdraw(double amount) override 
+    {
+        // Apply transaction fee for checking account
+        const double transactionFee = 1.0; // Example: $1 fee
+        if (balance >= amount + transactionFee) 
+        {
+            balance -= (amount + transactionFee);
+        } 
+        else 
+        {
+            cout << "Insufficient balance. Cannot withdraw." << endl;
+        }
+    }
+
+    void display() const override 
+    {
+        cout << "Checking Account - ";
+        BankAccount::display();
+    }
 };
 
 // Friend function definition
 void displayAccountDetails(const BankAccount& acc) 
 {
-    cout << "Account Number: " << acc.accountNumber << endl;
-    cout << "Balance: $" << acc.balance << endl;
+    acc.display();
 }
 
 int main() 
 {
-    // Create two bank accounts
-    BankAccount acc1("12345", 1000.0);
-    BankAccount acc2("67890", 2000.0);
+    // Create savings and checking accounts
+    SavingsAccount savings("SA123", 1000.0);
+    CheckingAccount checking("CA456", 2000.0);
 
     // Deposit and withdraw
-    acc1.deposit(500.0);
-    acc2.withdraw(300.0);
+    savings.deposit(500.0);
+    checking.withdraw(300.0);
 
     // Display account details
-    displayAccountDetails(acc1);
-    displayAccountDetails(acc2);
+    displayAccountDetails(savings);
+    displayAccountDetails(checking);
 
     // Combine balances using operator overloading
-    BankAccount combined = acc1 + acc2;
+    BankAccount combined = savings + checking;
     cout << "Combined Balance: $" << combined.getBalance() << endl;
 
     return 0;
