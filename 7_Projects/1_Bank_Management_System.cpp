@@ -1,3 +1,9 @@
+/*
+The following code demostrates some of the concepts of Object Oriented Programing
+The code demonstrates a bank management system.
+*/
+
+
 #include <iostream>
 #include <string>
 using namespace std;
