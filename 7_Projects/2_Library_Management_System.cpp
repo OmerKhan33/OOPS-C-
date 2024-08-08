@@ -105,3 +105,33 @@ public:
         }
     }
 };
+
+void saveLibraryData(const Library& library, const string& filename) {
+    ofstream outFile(filename);
+    if (outFile.is_open()) {
+        // Save books data
+        // Note: This is simplified, for real use you'd serialize more information
+        for (const auto& book : library.books) {
+            outFile << book.getTitle() << "," << book.getAuthor() << "," << book.getAvailability() << endl;
+        }
+        outFile.close();
+    }
+}
+
+void loadLibraryData(Library& library, const string& filename) {
+    ifstream inFile(filename);
+    if (inFile.is_open()) {
+        string title, author;
+        bool isAvailable;
+        string line;
+        while (getline(inFile, line)) {
+            size_t pos1 = line.find(',');
+            size_t pos2 = line.find_last_of(',');
+            title = line.substr(0, pos1);
+            author = line.substr(pos1 + 1, pos2 - pos1 - 1);
+            isAvailable = line.substr(pos2 + 1) == "1";
+            library.addBook(Book(title, author, isAvailable));
+        }
+        inFile.close();
+    }
+}
