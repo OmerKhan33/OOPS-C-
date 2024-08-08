@@ -135,3 +135,41 @@ void loadLibraryData(Library& library, const string& filename) {
         inFile.close();
     }
 }
+
+int main() {
+    Library library;
+    loadLibraryData(library, "library_data.txt");
+
+    Librarian librarian("Alice", "L001");
+    Member member("Bob", "M001");
+
+    library.addBook(Book("1984", "George Orwell"));
+    library.addBook(Book("To Kill a Mockingbird", "Harper Lee"));
+
+    cout << "Library Inventory:" << endl;
+    library.displayBooks();
+    cout << endl;
+
+    cout << "Librarian Info:" << endl;
+    librarian.display();
+    cout << endl;
+
+    cout << "Member Info:" << endl;
+    member.display();
+    cout << endl;
+
+    cout << "Attempting to borrow '1984': " << (library.borrowBook("1984") ? "Success" : "Failed") << endl;
+    member.borrowBook("1984");
+    member.display();
+    cout << endl;
+
+    cout << "Returning '1984': " << endl;
+    library.returnBook("1984");
+    member.returnBook("1984");
+    member.display();
+    cout << endl;
+
+    saveLibraryData(library, "library_data.txt");
+
+    return 0;
+}
