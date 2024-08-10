@@ -76,7 +76,7 @@ public:
 };
 
 class Library {
-private:
+public:
     vector<Book> books;
 public:
     void addBook(const Book& book) {
