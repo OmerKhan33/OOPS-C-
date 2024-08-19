@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <algorithm> // Required for std::find
 
 using namespace std;
 
@@ -12,27 +13,36 @@ protected:
     string id;
 public:
     User(string n, string i) : name(n), id(i) {}
+    
+    // Virtual function to display user information
     virtual void display() const {
         cout << "Name: " << name << ", ID: " << id << endl;
     }
+    
     virtual ~User() {}
 };
 
 // Derived class for Members
 class Member : public User {
 public:
-    vector<string> borrowedBooks;
-public:
+    vector<string> borrowedBooks;  // Stores borrowed books
+
     Member(string n, string i) : User(n, i) {}
+    
+    // Function to borrow a book
     void borrowBook(const string& book) {
         borrowedBooks.push_back(book);
     }
+    
+    // Function to return a borrowed book
     void returnBook(const string& book) {
         auto it = find(borrowedBooks.begin(), borrowedBooks.end(), book);
         if (it != borrowedBooks.end()) {
             borrowedBooks.erase(it);
         }
     }
+    
+    // Overridden display function to include borrowed books
     void display() const override {
         User::display();
         cout << "Borrowed Books: ";
@@ -47,46 +57,63 @@ public:
 class Librarian : public User {
 public:
     Librarian(string n, string i) : User(n, i) {}
+    
+    // Overridden display function to indicate librarian role
     void display() const override {
         User::display();
         cout << "Role: Librarian" << endl;
     }
 };
 
+// Book class representing each book in the library
 class Book {
-public:
+private:
     string title;
     string author;
-    bool isAvailable;
+    bool isAvailable;  // Book availability status
+
 public:
     Book(string t, string a, bool avail = true) : title(t), author(a), isAvailable(avail) {}
 
+    // Set availability of the book
     void setAvailability(bool avail) {
         isAvailable = avail;
     }
+    
+    // Get the availability status of the book
     bool getAvailability() const {
         return isAvailable;
     }
+    
+    // Get the title of the book
     string getTitle() const {
         return title;
     }
+    
+    // Display book details
     void display() const {
         cout << "Title: " << title << ", Author: " << author << ", Available: " << (isAvailable ? "Yes" : "No") << endl;
     }
 };
 
+// Library class managing a collection of books
 class Library {
 public:
-    vector<Book> books;
-public:
+    vector<Book> books;  // Vector storing all books
+
+    // Add a new book to the library
     void addBook(const Book& book) {
         books.push_back(book);
     }
+    
+    // Display all books in the library
     void displayBooks() const {
         for (const auto& book : books) {
             book.display();
         }
     }
+    
+    // Borrow a book from the library if available
     bool borrowBook(const string& title) {
         for (auto& book : books) {
             if (book.getTitle() == title && book.getAvailability()) {
@@ -96,6 +123,8 @@ public:
         }
         return false;
     }
+    
+    // Return a borrowed book to the library
     void returnBook(const string& title) {
         for (auto& book : books) {
             if (book.getTitle() == title) {
@@ -106,24 +135,23 @@ public:
     }
 };
 
+// Function to save library data to a file
 void saveLibraryData(const Library& library, const string& filename) {
     ofstream outFile(filename);
     if (outFile.is_open()) {
-        // Save books data
-        // Note: This is simplified, for real use you'd serialize more information
         for (const auto& book : library.books) {
-            outFile << book.getTitle() << "," << book.getAuthor() << "," << book.getAvailability() << endl;
+            outFile << book.getTitle() << "," << book.getAvailability() << endl;
         }
         outFile.close();
     }
 }
 
+// Function to load library data from a file
 void loadLibraryData(Library& library, const string& filename) {
     ifstream inFile(filename);
     if (inFile.is_open()) {
-        string title, author;
+        string title, author, line;
         bool isAvailable;
-        string line;
         while (getline(inFile, line)) {
             size_t pos1 = line.find(',');
             size_t pos2 = line.find_last_of(',');
