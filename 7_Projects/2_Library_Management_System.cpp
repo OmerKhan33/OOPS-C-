@@ -20,7 +20,7 @@ public:
 
 // Derived class for Members
 class Member : public User {
-private:
+public:
     vector<string> borrowedBooks;
 public:
     Member(string n, string i) : User(n, i) {}
@@ -54,7 +54,7 @@ public:
 };
 
 class Book {
-private:
+public:
     string title;
     string author;
     bool isAvailable;
