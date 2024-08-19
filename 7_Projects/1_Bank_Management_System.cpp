@@ -33,7 +33,7 @@ class BankAccount
             } 
             else 
             {
-                cout << "Insufficient balance. Cannot withdraw." << endl;
+                cout << "Insufficient balance!Cannot withdraw." << endl;
             }
         }
 
