@@ -7,7 +7,8 @@
 using namespace std;
 
 // Base class for Users
-class User {
+class User 
+{
 protected:
     string name;
     string id;
@@ -15,7 +16,8 @@ public:
     User(string n, string i) : name(n), id(i) {}
     
     // Virtual function to display user information
-    virtual void display() const {
+    virtual void display() const 
+    {
         cout << "Name: " << name << ", ID: " << id << endl;
     }
     
@@ -23,30 +25,36 @@ public:
 };
 
 // Derived class for Members
-class Member : public User {
+class Member : public User 
+{
 public:
     vector<string> borrowedBooks;  // Stores borrowed books
 
     Member(string n, string i) : User(n, i) {}
     
     // Function to borrow a book
-    void borrowBook(const string& book) {
+    void borrowBook(const string& book) 
+    {
         borrowedBooks.push_back(book);
     }
     
     // Function to return a borrowed book
-    void returnBook(const string& book) {
+    void returnBook(const string& book) 
+    {
         auto it = find(borrowedBooks.begin(), borrowedBooks.end(), book);
-        if (it != borrowedBooks.end()) {
+        if (it != borrowedBooks.end()) 
+        {
             borrowedBooks.erase(it);
         }
     }
     
     // Overridden display function to include borrowed books
-    void display() const override {
+    void display() const override 
+    {
         User::display();
         cout << "Borrowed Books: ";
-        for (const auto& book : borrowedBooks) {
+        for (const auto& book : borrowedBooks) 
+        {
             cout << book << " ";
         }
         cout << endl;
@@ -54,19 +62,22 @@ public:
 };
 
 // Derived class for Librarians
-class Librarian : public User {
+class Librarian : public User 
+{
 public:
     Librarian(string n, string i) : User(n, i) {}
     
     // Overridden display function to indicate librarian role
-    void display() const override {
+    void display() const override 
+    {
         User::display();
         cout << "Role: Librarian" << endl;
     }
 };
 
 // Book class representing each book in the library
-class Book {
+class Book 
+{
 private:
     string title;
     string author;
@@ -76,47 +87,58 @@ public:
     Book(string t, string a, bool avail = true) : title(t), author(a), isAvailable(avail) {}
 
     // Set availability of the book
-    void setAvailability(bool avail) {
+    void setAvailability(bool avail) 
+    {
         isAvailable = avail;
     }
     
     // Get the availability status of the book
-    bool getAvailability() const {
+    bool getAvailability() const 
+    {
         return isAvailable;
     }
     
     // Get the title of the book
-    string getTitle() const {
+    string getTitle() const 
+    {
         return title;
     }
     
     // Display book details
-    void display() const {
+    void display() const 
+    {
         cout << "Title: " << title << ", Author: " << author << ", Available: " << (isAvailable ? "Yes" : "No") << endl;
     }
 };
 
 // Library class managing a collection of books
-class Library {
+class Library 
+{
 public:
     vector<Book> books;  // Vector storing all books
 
     // Add a new book to the library
-    void addBook(const Book& book) {
+    void addBook(const Book& book) 
+    {
         books.push_back(book);
     }
     
     // Display all books in the library
-    void displayBooks() const {
-        for (const auto& book : books) {
+    void displayBooks() const 
+    {
+        for (const auto& book : books) 
+        {
             book.display();
         }
     }
     
     // Borrow a book from the library if available
-    bool borrowBook(const string& title) {
-        for (auto& book : books) {
-            if (book.getTitle() == title && book.getAvailability()) {
+    bool borrowBook(const string& title) 
+    {
+        for (auto& book : books) 
+        {
+            if (book.getTitle() == title && book.getAvailability()) 
+            {
                 book.setAvailability(false);
                 return true;
             }
@@ -125,9 +147,12 @@ public:
     }
     
     // Return a borrowed book to the library
-    void returnBook(const string& title) {
-        for (auto& book : books) {
-            if (book.getTitle() == title) {
+    void returnBook(const string& title) 
+    {
+        for (auto& book : books) 
+        {
+            if (book.getTitle() == title) 
+            {
                 book.setAvailability(true);
                 break;
             }
@@ -136,10 +161,13 @@ public:
 };
 
 // Function to save library data to a file
-void saveLibraryData(const Library& library, const string& filename) {
+void saveLibraryData(const Library& library, const string& filename) 
+{
     ofstream outFile(filename);
-    if (outFile.is_open()) {
-        for (const auto& book : library.books) {
+    if (outFile.is_open()) 
+    {
+        for (const auto& book : library.books) 
+        {
             outFile << book.getTitle() << "," << book.getAvailability() << endl;
         }
         outFile.close();
@@ -147,12 +175,15 @@ void saveLibraryData(const Library& library, const string& filename) {
 }
 
 // Function to load library data from a file
-void loadLibraryData(Library& library, const string& filename) {
+void loadLibraryData(Library& library, const string& filename) 
+{
     ifstream inFile(filename);
-    if (inFile.is_open()) {
+    if (inFile.is_open()) 
+    {
         string title, author, line;
         bool isAvailable;
-        while (getline(inFile, line)) {
+        while (getline(inFile, line)) 
+        {
             size_t pos1 = line.find(',');
             size_t pos2 = line.find_last_of(',');
             title = line.substr(0, pos1);
@@ -164,7 +195,8 @@ void loadLibraryData(Library& library, const string& filename) {
     }
 }
 
-int main() {
+int main() 
+{
     Library library;
     loadLibraryData(library, "library_data.txt");
 
