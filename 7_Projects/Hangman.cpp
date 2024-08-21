@@ -1,5 +1,4 @@
 
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -20,7 +19,8 @@ private:
 
 public:
     // Constructor: Initializes the game with a word list and maximum number of attempts
-    Hangman(const vector<string>& words, int maxAttempts = 6) {
+    Hangman(const vector<string>& words, int maxAttempts = 6) 
+    {
         wordList = words;
         this->maxAttempts = maxAttempts;
         attemptsLeft = maxAttempts;
