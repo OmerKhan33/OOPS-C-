@@ -1,4 +1,20 @@
+/*
+    Hangman Game in C++
 
+    This program implements the Hangman game using Object-Oriented Programming (OOP) concepts in C++.
+    The game randomly selects a word from a predefined list, and the player has to guess the word letter by letter.
+    The player has a limited number of incorrect guesses before the game ends.
+
+    Classes:
+    --------
+    - Hangman: Manages the game's core logic, including the selection of words, processing of guesses, and game status checks.
+
+    Features:
+    --------
+    - Uses encapsulation to hide the internal data of the Hangman class.
+    - Uses inheritance or polymorphism if needed (though not required in this simple example).
+    - Properly handles the game state and provides feedback to the player.
+*/
 #include <iostream>
 #include <vector>
 #include <string>
