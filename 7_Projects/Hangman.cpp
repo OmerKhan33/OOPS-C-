@@ -24,7 +24,8 @@
 using namespace std;
 
 // Hangman class that encapsulates the entire game logic
-class Hangman {
+class Hangman 
+{
 private:
     vector<string> wordList;  // List of possible words for the game
     string secretWord;        // The word that the player needs to guess
@@ -45,9 +46,11 @@ public:
     }
 
     // Starts the game loop
-    void startGame() {
+    void startGame() 
+    {
         cout << "Welcome to Hangman!" << endl;
-        while (attemptsLeft > 0 && guessedWord != secretWord) {
+        while (attemptsLeft > 0 && guessedWord != secretWord) 
+        {
             displayCurrentState();
             char guess = getGuessFromPlayer();
             processGuess(guess);
@@ -57,24 +60,28 @@ public:
 
 private:
     // Gets a random word from the word list
-    string getRandomWord() {
+    string getRandomWord() 
+    {
         srand(time(0));
         int randomIndex = rand() % wordList.size();
         return wordList[randomIndex];
     }
 
     // Displays the current state of the game (guessed word and remaining attempts)
-    void displayCurrentState() {
+    void displayCurrentState() 
+    {
         cout << "\nGuessed word: " << guessedWord << endl;
         cout << "Wrong guesses: ";
-        for (char c : wrongGuesses) {
+        for (char c : wrongGuesses) 
+        {
             cout << c << " ";
         }
         cout << "\nAttempts left: " << attemptsLeft << endl;
     }
 
     // Gets a letter guess from the player
-    char getGuessFromPlayer() {
+    char getGuessFromPlayer() 
+    {
         char guess;
         cout << "Enter your guess: ";
         cin >> guess;
@@ -82,10 +89,13 @@ private:
     }
 
     // Processes the player's guess
-    void processGuess(char guess) {
+    void processGuess(char guess) 
+    {
         bool correctGuess = false;
-        for (size_t i = 0; i < secretWord.length(); ++i) {
-            if (secretWord[i] == guess) {
+        for (size_t i = 0; i < secretWord.length(); ++i) 
+        {
+            if (secretWord[i] == guess) 
+            {
                 guessedWord[i] = guess;
                 correctGuess = true;
             }
