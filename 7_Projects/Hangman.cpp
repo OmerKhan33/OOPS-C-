@@ -12,9 +12,10 @@
     Features:
     --------
     - Uses encapsulation to hide the internal data of the Hangman class.
-    - Uses inheritance or polymorphism if needed (though not required in this simple example).
     - Properly handles the game state and provides feedback to the player.
+    - Displays a visual representation of the hangman as the game progresses.
 */
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -51,7 +52,8 @@ public:
         cout << "Welcome to Hangman!" << endl;
         while (attemptsLeft > 0 && guessedWord != secretWord) 
         {
-            displayCurrentState();
+            displayHangman();      // Display the hangman visual
+            displayCurrentState(); // Display the current state of the game
             char guess = getGuessFromPlayer();
             processGuess(guess);
         }
@@ -100,24 +102,45 @@ private:
                 correctGuess = true;
             }
         }
-        if (!correctGuess) {
+        if (!correctGuess) 
+        {
             wrongGuesses.push_back(guess);
             attemptsLeft--;
         }
     }
 
     // Ends the game and displays the result
-    void endGame() {
-        if (guessedWord == secretWord) {
+    void endGame() 
+    {
+        displayHangman(); // Display final hangman state
+        if (guessedWord == secretWord) 
+        {
             cout << "Congratulations! You've guessed the word: " << secretWord << endl;
-        } else {
+        } 
+        else 
+        {
             cout << "Game over! The correct word was: " << secretWord << endl;
         }
+    }
+
+    // Displays the hangman visual based on the number of attempts left
+    void displayHangman() 
+    {
+        int state = maxAttempts - attemptsLeft;
+
+        cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  " << (state > 0 ? "O" : " ") << "   |" << endl;
+        cout << " " << (state > 2 ? "/" : " ") << (state > 1 ? "|" : " ") << (state > 3 ? "\\" : " ") << "  |" << endl;
+        cout << " " << (state > 4 ? "/" : " ") << " " << (state > 5 ? "\\" : " ") << "  |" << endl;
+        cout << "      |" << endl;
+        cout << "=========" << endl;
     }
 };
 
 // Main function
-int main() {
+int main() 
+{
     vector<string> wordList = {"computer", "programming", "hangman", "developer", "software"}; // Word list for the game
 
     Hangman game(wordList); // Create a Hangman game object
