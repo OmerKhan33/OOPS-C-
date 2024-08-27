@@ -2,7 +2,8 @@
 using namespace std;
 
 // Abstract Base Class (Abstraction)
-class Player {
+class Player 
+{
 protected:
     char symbol; // Encapsulated data member for player symbol
 
@@ -20,7 +21,8 @@ public:
 };
 
 // Derived Class for Human Player (Inheritance)
-class HumanPlayer : public Player {
+class HumanPlayer : public Player 
+{
 public:
     // Constructor
     HumanPlayer(char sym) : Player(sym) {}
@@ -39,13 +41,15 @@ public:
 };
 
 // Derived Class for AI Player (Inheritance)
-class AIPlayer : public Player {
+class AIPlayer : public Player 
+{
 public:
     // Constructor
     AIPlayer(char sym) : Player(sym) {}
 
     // Overridden function to make a move (Polymorphism)
-    void makeMove(char board[3][3]) override {
+    void makeMove(char board[3][3]) override 
+    {
         // Simple AI: place in the first available spot
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
