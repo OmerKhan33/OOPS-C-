@@ -99,7 +99,8 @@ public:
 };
 
 // Tic-Tac-Toe Game Class (Encapsulation and Abstraction)
-class TicTacToe {
+class TicTacToe 
+{
 private:
     char board[3][3]; // Encapsulated data member for the game board
     Player* player1;  // Player 1 (can be Human or AI)
@@ -108,9 +109,11 @@ private:
 
 public:
     // Constructor
-    TicTacToe(Player* p1, Player* p2) : player1(p1), player2(p2) {
+    TicTacToe(Player* p1, Player* p2) : player1(p1), player2(p2) 
+    {
         for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
+            for (int j = 0; j < 3; ++j) 
+            {
                 board[i][j] = ' ';
             }
         }
@@ -118,10 +121,13 @@ public:
     }
 
     // Function to display the board
-    void displayBoard() {
+    void displayBoard() 
+    {
         cout << "Current Board:\n";
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
+        for (int i = 0; i < 3; ++i) 
+        {
+            for (int j = 0; j < 3; ++j) 
+            {
                 cout << board[i][j];
                 if (j < 2) cout << " | ";
             }
@@ -131,24 +137,31 @@ public:
     }
 
     // Function to check for a win
-    bool checkWin(char symbol) {
-        for (int i = 0; i < 3; ++i) {
+    bool checkWin(char symbol) 
+    {
+        for (int i = 0; i < 3; ++i) 
+        {
             if ((board[i][0] == symbol && board[i][1] == symbol && board[i][2] == symbol) || 
-                (board[0][i] == symbol && board[1][i] == symbol && board[2][i] == symbol)) {
-                return true;
-            }
+                (board[0][i] == symbol && board[1][i] == symbol && board[2][i] == symbol)) 
+                {
+                    return true;
+                }
         }
         if ((board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol) || 
-            (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol)) {
-            return true;
-        }
+            (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol)) 
+            {
+                return true;
+            }
         return false;
     }
 
     // Function to check for a draw
-    bool checkDraw() {
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
+    bool checkDraw() 
+    {
+        for (int i = 0; i < 3; ++i) 
+        {
+            for (int j = 0; j < 3; ++j) 
+            {
                 if (board[i][j] == ' ') return false;
             }
         }
@@ -156,23 +169,28 @@ public:
     }
 
     // Function to toggle between players
-    void togglePlayer() {
+    void togglePlayer() 
+    {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
     }
 
     // Function to play the game
-    void play() {
-        while (true) {
+    void play() 
+    {
+        while (true) 
+        {
             displayBoard();
             currentPlayer->makeMove(board);
 
-            if (checkWin(currentPlayer->getSymbol())) {
+            if (checkWin(currentPlayer->getSymbol())) 
+            {
                 displayBoard();
                 cout << "Player " << currentPlayer->getSymbol() << " wins!" << endl;
                 break;
             }
 
-            if (checkDraw()) {
+            if (checkDraw()) 
+            {
                 displayBoard();
                 cout << "The game is a draw!" << endl;
                 break;
@@ -183,13 +201,15 @@ public:
     }
 
     // Operator overloading to assign a player to another game (Operator Overloading)
-    void operator=(const TicTacToe& other) {
+    void operator=(const TicTacToe& other) 
+    {
         player1 = other.player1;
         player2 = other.player2;
     }
 };
 
-int main() {
+int main() 
+{
     // Create two players (a human and an AI)
     HumanPlayer human('X');
     AIPlayer ai('O');
