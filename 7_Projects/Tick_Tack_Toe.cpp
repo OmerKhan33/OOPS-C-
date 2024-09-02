@@ -49,7 +49,8 @@ public:
     virtual void makeMove(char board[3][3]) = 0;
 
     // Function to get the player symbol
-    char getSymbol() const {
+    char getSymbol() const 
+    {
         return symbol;
     }
 };
@@ -62,11 +63,13 @@ public:
     HumanPlayer(char sym) : Player(sym) {}
 
     // Overridden function to make a move (Polymorphism)
-    void makeMove(char board[3][3]) override {
+    void makeMove(char board[3][3]) override 
+    {
         int row, col;
         cout << "Enter your move (row and column): ";
         cin >> row >> col;
-        while (board[row][col] != ' ') {
+        while (board[row][col] != ' ') 
+        {
             cout << "Cell already occupied! Enter again: ";
             cin >> row >> col;
         }
@@ -89,7 +92,8 @@ public:
         {
             for (int j = 0; j < 3; ++j) 
             {
-                if (board[i][j] == ' ') {
+                if (board[i][j] == ' ') 
+                {
                     board[i][j] = symbol;
                     return;
                 }
